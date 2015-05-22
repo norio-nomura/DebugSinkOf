@@ -1,0 +1,288 @@
+--- non-debug-Onone.sil	2015-05-22 12:36:50.000000000 +0900
++++ debug-Onone.sil	2015-05-22 12:36:49.000000000 +0900
+@@ -4,8 +4,8 @@
+ import Swift
+ import SwiftShims
+ 
+-// main.c : Swift.SinkOf<Swift.Int>
+-sil_global main.c : Swift.SinkOf<Swift.Int> : $SinkOf<Int>
++// debug.c : debug.DebugSinkOf<Swift.Int>
++sil_global debug.c : debug.DebugSinkOf<Swift.Int> : $DebugSinkOf<Int>
+ 
+ // globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_token4
+ sil_global private_external [fragile] @globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_token4 : $Builtin.Word
+@@ -39,31 +39,31 @@
+   %14 = global_addr static Swift.Process._unsafeArgv : Swift.UnsafeMutablePointer<Swift.UnsafeMutablePointer<Swift.Int8>> : $*UnsafeMutablePointer<UnsafeMutablePointer<Int8>> // user: %15
+   store %1 to %14 : $*UnsafeMutablePointer<UnsafeMutablePointer<Int8>> // id: %15
+   %16 = tuple ()
+-  %17 = global_addr main.c : Swift.SinkOf<Swift.Int> : $*SinkOf<Int> // users: %28, %30
+-  // function_ref Swift.SinkOf.init <A>(Swift.SinkOf<A>.Type)((A) -> ()) -> Swift.SinkOf<A>
+-  %18 = function_ref Swift.SinkOf.init <A>(Swift.SinkOf<A>.Type)((A) -> ()) -> Swift.SinkOf<A> : $@thin <τ_0_0> (@owned @callee_owned (@in τ_0_0) -> (), @thin SinkOf<τ_0_0>.Type) -> @owned SinkOf<τ_0_0> // user: %27
+-  %19 = metatype $@thin SinkOf<Int>.Type          // user: %27
+-  // function_ref main.Counter.__allocating_init (main.Counter.Type)() -> main.Counter
+-  %20 = function_ref main.Counter.__allocating_init (main.Counter.Type)() -> main.Counter : $@thin (@thick Counter.Type) -> @owned Counter // user: %22
++  %17 = global_addr debug.c : debug.DebugSinkOf<Swift.Int> : $*DebugSinkOf<Int> // users: %28, %30
++  // function_ref debug.DebugSinkOf.init <A>(debug.DebugSinkOf<A>.Type)((A) -> ()) -> debug.DebugSinkOf<A>
++  %18 = function_ref debug.DebugSinkOf.init <A>(debug.DebugSinkOf<A>.Type)((A) -> ()) -> debug.DebugSinkOf<A> : $@thin <τ_0_0> (@owned @callee_owned (@in τ_0_0) -> (), @thin DebugSinkOf<τ_0_0>.Type) -> @owned DebugSinkOf<τ_0_0> // user: %27
++  %19 = metatype $@thin DebugSinkOf<Int>.Type     // user: %27
++  // function_ref debug.Counter.__allocating_init (debug.Counter.Type)() -> debug.Counter
++  %20 = function_ref debug.Counter.__allocating_init (debug.Counter.Type)() -> debug.Counter : $@thin (@thick Counter.Type) -> @owned Counter // user: %22
+   %21 = metatype $@thick Counter.Type             // user: %22
+   %22 = apply %20(%21) : $@thin (@thick Counter.Type) -> @owned Counter // user: %24
+-  // function_ref main.Counter.update (main.Counter) -> (Swift.Int) -> ()
+-  %23 = function_ref main.Counter.update (main.Counter) -> (Swift.Int) -> () : $@thin (@owned Counter) -> @owned @callee_owned (Int) -> () // user: %24
++  // function_ref debug.Counter.update (debug.Counter) -> (Swift.Int) -> ()
++  %23 = function_ref debug.Counter.update (debug.Counter) -> (Swift.Int) -> () : $@thin (@owned Counter) -> @owned @callee_owned (Int) -> () // user: %24
+   %24 = apply %23(%22) : $@thin (@owned Counter) -> @owned @callee_owned (Int) -> () // user: %26
+   // function_ref reabstraction thunk helper from @callee_owned (@unowned Swift.Int) -> (@unowned ()) to @callee_owned (@in Swift.Int) -> (@unowned ())
+   %25 = function_ref reabstraction thunk helper from @callee_owned (@unowned Swift.Int) -> (@unowned ()) to @callee_owned (@in Swift.Int) -> (@unowned ()) : $@thin (@in Int, @owned @callee_owned (Int) -> ()) -> () // user: %26
+   %26 = partial_apply %25(%24) : $@thin (@in Int, @owned @callee_owned (Int) -> ()) -> () // user: %27
+-  %27 = apply %18<Int>(%26, %19) : $@thin <τ_0_0> (@owned @callee_owned (@in τ_0_0) -> (), @thin SinkOf<τ_0_0>.Type) -> @owned SinkOf<τ_0_0> // user: %28
+-  store %27 to %17 : $*SinkOf<Int>                // id: %28
+-  // function_ref Swift.SinkOf.put <A>(Swift.SinkOf<A>)(A) -> ()
+-  %29 = function_ref Swift.SinkOf.put <A>(Swift.SinkOf<A>)(A) -> () : $@cc(method) @thin <τ_0_0> (@in τ_0_0, @owned SinkOf<τ_0_0>) -> () // user: %36
+-  %30 = load %17 : $*SinkOf<Int>                  // users: %31, %36
+-  retain_value %30 : $SinkOf<Int>                 // id: %31
++  %27 = apply %18<Int>(%26, %19) : $@thin <τ_0_0> (@owned @callee_owned (@in τ_0_0) -> (), @thin DebugSinkOf<τ_0_0>.Type) -> @owned DebugSinkOf<τ_0_0> // user: %28
++  store %27 to %17 : $*DebugSinkOf<Int>           // id: %28
++  // function_ref debug.DebugSinkOf.put <A>(debug.DebugSinkOf<A>)(A) -> ()
++  %29 = function_ref debug.DebugSinkOf.put <A>(debug.DebugSinkOf<A>)(A) -> () : $@cc(method) @thin <τ_0_0> (@in τ_0_0, @owned DebugSinkOf<τ_0_0>) -> () // user: %36
++  %30 = load %17 : $*DebugSinkOf<Int>             // users: %31, %36
++  retain_value %30 : $DebugSinkOf<Int>            // id: %31
+   %32 = integer_literal $Builtin.Int64, 128       // user: %33
+   %33 = struct $Int (%32 : $Builtin.Int64)        // user: %35
+   %34 = alloc_stack $Int                          // users: %35, %36, %37
+   store %33 to %34#1 : $*Int                      // id: %35
+-  %36 = apply %29<Int>(%34#1, %30) : $@cc(method) @thin <τ_0_0> (@in τ_0_0, @owned SinkOf<τ_0_0>) -> ()
++  %36 = apply %29<Int>(%34#1, %30) : $@cc(method) @thin <τ_0_0> (@in τ_0_0, @owned DebugSinkOf<τ_0_0>) -> ()
+   dealloc_stack %34#0 : $*@local_storage Int      // id: %37
+   %38 = integer_literal $Builtin.Int32, 0         // user: %39
+   %39 = struct $Int32 (%38 : $Builtin.Int32)      // user: %40
+@@ -93,8 +93,89 @@
+   return %16 : $()                                // id: %17
+ }
+ 
+-// main.Counter.update (main.Counter)(Swift.Int) -> ()
+-sil hidden main.Counter.update (main.Counter)(Swift.Int) -> () : $@cc(method) @thin (Int, @owned Counter) -> () {
++// debug.DebugSinkOf.init <A>(debug.DebugSinkOf<A>.Type)((A) -> ()) -> debug.DebugSinkOf<A>
++sil debug.DebugSinkOf.init <A>(debug.DebugSinkOf<A>.Type)((A) -> ()) -> debug.DebugSinkOf<A> : $@thin <T> (@owned @callee_owned (@in T) -> (), @thin DebugSinkOf<T>.Type) -> @owned DebugSinkOf<T> {
++bb0(%0 : $@callee_owned (@in T) -> (), %1 : $@thin DebugSinkOf<T>.Type):
++  %2 = alloc_stack $DebugSinkOf<T>  // var self   // users: %5, %12
++  debug_value %0 : $@callee_owned (@in T) -> ()  // let putElement // id: %3
++  strong_retain %0 : $@callee_owned (@in T) -> () // id: %4
++  %5 = struct_element_addr %2#1 : $*DebugSinkOf<T>, #DebugSinkOf.putElement // user: %6
++  store %0 to %5 : $*@callee_owned (@in T) -> ()  // id: %6
++  strong_release %0 : $@callee_owned (@in T) -> () // id: %7
++  %8 = struct $DebugSinkOf<T> (%0 : $@callee_owned (@in T) -> ()) // users: %9, %13
++  retain_value %8 : $DebugSinkOf<T>               // id: %9
++  %10 = struct $DebugSinkOf<T> (%0 : $@callee_owned (@in T) -> ()) // user: %11
++  release_value %10 : $DebugSinkOf<T>             // id: %11
++  dealloc_stack %2#0 : $*@local_storage DebugSinkOf<T> // id: %12
++  return %8 : $DebugSinkOf<T>                     // id: %13
++}
++
++// debug.DebugSinkOf.init <A>(debug.DebugSinkOf<A>.Type)<B : Swift.SinkType>(B) -> debug.DebugSinkOf<A>
++sil debug.DebugSinkOf.init <A>(debug.DebugSinkOf<A>.Type)<B : Swift.SinkType>(B) -> debug.DebugSinkOf<A> : $@thin <T><S where S : SinkType, S.Element == T> (@in S, @thin DebugSinkOf<T>.Type) -> @owned DebugSinkOf<T> {
++bb0(%0 : $*S, %1 : $@thin DebugSinkOf<T>.Type):
++  %2 = alloc_stack $DebugSinkOf<T>  // var self   // users: %8, %15
++  %3 = alloc_box $S  // var base                  // users: %4, %6, %7, %7, %10
++  copy_addr [take] %0 to [initialization] %3#1 : $*S // id: %4
++  // function_ref debug.DebugSinkOf.(init <A>(debug.DebugSinkOf<A>.Type) -> <B : Swift.SinkType>(B) -> debug.DebugSinkOf<A>).(closure #1)
++  %5 = function_ref debug.DebugSinkOf.(init <A>(debug.DebugSinkOf<A>.Type) -> <B : Swift.SinkType>(B) -> debug.DebugSinkOf<A>).(closure #1) : $@thin <τ_0_0><τ_1_0 where τ_1_0 : SinkType, τ_1_0.Element == τ_0_0> (@in τ_0_0, @owned Builtin.NativeObject, @inout τ_1_0) -> () // user: %7
++  strong_retain %3#0 : $Builtin.NativeObject      // id: %6
++  %7 = partial_apply %5<T, S>(%3#0, %3#1) : $@thin <τ_0_0><τ_1_0 where τ_1_0 : SinkType, τ_1_0.Element == τ_0_0> (@in τ_0_0, @owned Builtin.NativeObject, @inout τ_1_0) -> () // users: %9, %11, %13
++  %8 = struct_element_addr %2#1 : $*DebugSinkOf<T>, #DebugSinkOf.putElement // user: %9
++  store %7 to %8 : $*@callee_owned (@in T) -> ()  // id: %9
++  strong_release %3#0 : $Builtin.NativeObject     // id: %10
++  %11 = struct $DebugSinkOf<T> (%7 : $@callee_owned (@in T) -> ()) // users: %12, %16
++  retain_value %11 : $DebugSinkOf<T>              // id: %12
++  %13 = struct $DebugSinkOf<T> (%7 : $@callee_owned (@in T) -> ()) // user: %14
++  release_value %13 : $DebugSinkOf<T>             // id: %14
++  dealloc_stack %2#0 : $*@local_storage DebugSinkOf<T> // id: %15
++  return %11 : $DebugSinkOf<T>                    // id: %16
++}
++
++// debug.DebugSinkOf.(init <A>(debug.DebugSinkOf<A>.Type) -> <B : Swift.SinkType>(B) -> debug.DebugSinkOf<A>).(closure #1)
++sil shared debug.DebugSinkOf.(init <A>(debug.DebugSinkOf<A>.Type) -> <B : Swift.SinkType>(B) -> debug.DebugSinkOf<A>).(closure #1) : $@thin <T><S where S : SinkType, S.Element == T> (@in T, @owned Builtin.NativeObject, @inout S) -> () {
++bb0(%0 : $*T, %1 : $Builtin.NativeObject, %2 : $*S):
++  debug_value_addr %0 : $*T  // let $0            // id: %3
++  %4 = witness_method $S, #SinkType.put!1 : $@cc(witness_method) @thin <τ_0_0 where τ_0_0 : SinkType> (@in τ_0_0.Element, @inout τ_0_0) -> () // user: %7
++  %5 = alloc_stack $T                             // users: %6, %7, %8
++  copy_addr %0 to [initialization] %5#1 : $*T     // id: %6
++  %7 = apply %4<S, T>(%5#1, %2) : $@cc(witness_method) @thin <τ_0_0 where τ_0_0 : SinkType> (@in τ_0_0.Element, @inout τ_0_0) -> ()
++  dealloc_stack %5#0 : $*@local_storage T         // id: %8
++  strong_release %1 : $Builtin.NativeObject       // id: %9
++  destroy_addr %0 : $*T                           // id: %10
++  %11 = tuple ()                                  // user: %12
++  return %11 : $()                                // id: %12
++}
++
++// debug.DebugSinkOf.put <A>(debug.DebugSinkOf<A>)(A) -> ()
++sil debug.DebugSinkOf.put <A>(debug.DebugSinkOf<A>)(A) -> () : $@cc(method) @thin <T> (@in T, @owned DebugSinkOf<T>) -> () {
++bb0(%0 : $*T, %1 : $DebugSinkOf<T>):
++  debug_value_addr %0 : $*T  // let x             // id: %2
++  debug_value %1 : $DebugSinkOf<T>  // let self   // id: %3
++  %4 = struct_extract %1 : $DebugSinkOf<T>, #DebugSinkOf.putElement // users: %5, %8
++  strong_retain %4 : $@callee_owned (@in T) -> () // id: %5
++  %6 = alloc_stack $T                             // users: %7, %8, %9
++  copy_addr %0 to [initialization] %6#1 : $*T     // id: %7
++  %8 = apply %4(%6#1) : $@callee_owned (@in T) -> ()
++  dealloc_stack %6#0 : $*@local_storage T         // id: %9
++  release_value %1 : $DebugSinkOf<T>              // id: %10
++  destroy_addr %0 : $*T                           // id: %11
++  %12 = tuple ()                                  // user: %13
++  return %12 : $()                                // id: %13
++}
++
++// protocol witness for Swift.SinkType.put <A : Swift.SinkType>(inout Swift.SinkType.Self)(Swift.SinkType.Self.Element) -> () in conformance <A>debug.DebugSinkOf<A> : Swift.SinkType in debug
++sil [thunk] protocol witness for Swift.SinkType.put <A : Swift.SinkType>(inout Swift.SinkType.Self)(Swift.SinkType.Self.Element) -> () in conformance <A>debug.DebugSinkOf<A> : Swift.SinkType in debug : $@cc(witness_method) @thin <T> (@in T, @inout DebugSinkOf<T>) -> () {
++bb0(%0 : $*T, %1 : $*DebugSinkOf<T>):
++  %2 = load %1 : $*DebugSinkOf<T>                 // users: %3, %5
++  retain_value %2 : $DebugSinkOf<T>               // id: %3
++  // function_ref debug.DebugSinkOf.put <A>(debug.DebugSinkOf<A>)(A) -> ()
++  %4 = function_ref debug.DebugSinkOf.put <A>(debug.DebugSinkOf<A>)(A) -> () : $@cc(method) @thin <τ_0_0> (@in τ_0_0, @owned DebugSinkOf<τ_0_0>) -> () // user: %5
++  %5 = apply %4<T>(%0, %2) : $@cc(method) @thin <τ_0_0> (@in τ_0_0, @owned DebugSinkOf<τ_0_0>) -> () // user: %6
++  return %5 : $()                                 // id: %6
++}
++
++// debug.Counter.update (debug.Counter)(Swift.Int) -> ()
++sil hidden debug.Counter.update (debug.Counter)(Swift.Int) -> () : $@cc(method) @thin (Int, @owned Counter) -> () {
+ bb0(%0 : $Int, %1 : $Counter):
+   debug_value %0 : $Int  // let newValue          // id: %2
+   debug_value %1 : $Counter  // let self          // id: %3
+@@ -106,12 +187,12 @@
+   return %8 : $()                                 // id: %9
+ }
+ 
+-// main.Counter.__deallocating_deinit
+-sil hidden main.Counter.__deallocating_deinit : $@cc(method) @thin (@owned Counter) -> () {
++// debug.Counter.__deallocating_deinit
++sil hidden debug.Counter.__deallocating_deinit : $@cc(method) @thin (@owned Counter) -> () {
+ bb0(%0 : $Counter):
+   debug_value %0 : $Counter  // let self          // id: %1
+-  // function_ref main.Counter.deinit
+-  %2 = function_ref main.Counter.deinit : $@cc(method) @thin (@owned Counter) -> @owned Builtin.NativeObject // user: %3
++  // function_ref debug.Counter.deinit
++  %2 = function_ref debug.Counter.deinit : $@cc(method) @thin (@owned Counter) -> @owned Builtin.NativeObject // user: %3
+   %3 = apply %2(%0) : $@cc(method) @thin (@owned Counter) -> @owned Builtin.NativeObject // user: %4
+   %4 = unchecked_ref_cast %3 : $Builtin.NativeObject to $Counter // user: %5
+   dealloc_ref %4 : $Counter                       // id: %5
+@@ -119,16 +200,16 @@
+   return %6 : $()                                 // id: %7
+ }
+ 
+-// main.Counter.deinit
+-sil hidden main.Counter.deinit : $@cc(method) @thin (@owned Counter) -> @owned Builtin.NativeObject {
++// debug.Counter.deinit
++sil hidden debug.Counter.deinit : $@cc(method) @thin (@owned Counter) -> @owned Builtin.NativeObject {
+ bb0(%0 : $Counter):
+   debug_value %0 : $Counter  // let self          // id: %1
+   %2 = unchecked_ref_cast %0 : $Counter to $Builtin.NativeObject // user: %3
+   return %2 : $Builtin.NativeObject               // id: %3
+ }
+ 
+-// main.Counter.number.getter : Swift.Int
+-sil hidden [transparent] main.Counter.number.getter : Swift.Int : $@cc(method) @thin (@owned Counter) -> Int {
++// debug.Counter.number.getter : Swift.Int
++sil hidden [transparent] debug.Counter.number.getter : Swift.Int : $@cc(method) @thin (@owned Counter) -> Int {
+ bb0(%0 : $Counter):
+   debug_value %0 : $Counter  // let self          // id: %1
+   %2 = ref_element_addr %0 : $Counter, #Counter.number // user: %3
+@@ -137,8 +218,8 @@
+   return %3 : $Int                                // id: %5
+ }
+ 
+-// main.Counter.number.setter : Swift.Int
+-sil hidden [transparent] main.Counter.number.setter : Swift.Int : $@cc(method) @thin (Int, @owned Counter) -> () {
++// debug.Counter.number.setter : Swift.Int
++sil hidden [transparent] debug.Counter.number.setter : Swift.Int : $@cc(method) @thin (Int, @owned Counter) -> () {
+ bb0(%0 : $Int, %1 : $Counter):
+   debug_value %0 : $Int  // let value             // id: %2
+   debug_value %1 : $Counter  // let self          // id: %3
+@@ -149,8 +230,8 @@
+   return %7 : $()                                 // id: %8
+ }
+ 
+-// main.Counter.number.materializeForSet : Swift.Int
+-sil hidden [transparent] main.Counter.number.materializeForSet : Swift.Int : $@cc(method) @thin (Builtin.RawPointer, @inout Builtin.UnsafeValueBuffer, @owned Counter) -> (Builtin.RawPointer, Optional<@thin (Builtin.RawPointer, inout Builtin.UnsafeValueBuffer, inout Counter, @thick Counter.Type) -> ()>) {
++// debug.Counter.number.materializeForSet : Swift.Int
++sil hidden [transparent] debug.Counter.number.materializeForSet : Swift.Int : $@cc(method) @thin (Builtin.RawPointer, @inout Builtin.UnsafeValueBuffer, @owned Counter) -> (Builtin.RawPointer, Optional<@thin (Builtin.RawPointer, inout Builtin.UnsafeValueBuffer, inout Counter, @thick Counter.Type) -> ()>) {
+ bb0(%0 : $Builtin.RawPointer, %1 : $*Builtin.UnsafeValueBuffer, %2 : $Counter):
+   debug_value %0 : $Builtin.RawPointer  // let buffer // id: %3
+   debug_value %2 : $Counter  // let self          // id: %4
+@@ -174,8 +255,8 @@
+   return %3 : $()                                 // id: %4
+ }
+ 
+-// main.Counter.init (main.Counter.Type)() -> main.Counter
+-sil hidden main.Counter.init (main.Counter.Type)() -> main.Counter : $@cc(method) @thin (@owned Counter) -> @owned Counter {
++// debug.Counter.init (debug.Counter.Type)() -> debug.Counter
++sil hidden debug.Counter.init (debug.Counter.Type)() -> debug.Counter : $@cc(method) @thin (@owned Counter) -> @owned Counter {
+ bb0(%0 : $Counter):
+   debug_value %0 : $Counter  // let self          // id: %1
+   %2 = integer_literal $Builtin.Int64, 0          // user: %3
+@@ -185,12 +266,12 @@
+   return %0 : $Counter                            // id: %6
+ }
+ 
+-// main.Counter.__allocating_init (main.Counter.Type)() -> main.Counter
+-sil hidden main.Counter.__allocating_init (main.Counter.Type)() -> main.Counter : $@thin (@thick Counter.Type) -> @owned Counter {
++// debug.Counter.__allocating_init (debug.Counter.Type)() -> debug.Counter
++sil hidden debug.Counter.__allocating_init (debug.Counter.Type)() -> debug.Counter : $@thin (@thick Counter.Type) -> @owned Counter {
+ bb0(%0 : $@thick Counter.Type):
+   %1 = alloc_ref $Counter                         // user: %3
+-  // function_ref main.Counter.init (main.Counter.Type)() -> main.Counter
+-  %2 = function_ref main.Counter.init (main.Counter.Type)() -> main.Counter : $@cc(method) @thin (@owned Counter) -> @owned Counter // user: %3
++  // function_ref debug.Counter.init (debug.Counter.Type)() -> debug.Counter
++  %2 = function_ref debug.Counter.init (debug.Counter.Type)() -> debug.Counter : $@cc(method) @thin (@owned Counter) -> @owned Counter // user: %3
+   %3 = apply %2(%1) : $@cc(method) @thin (@owned Counter) -> @owned Counter // user: %4
+   return %3 : $Counter                            // id: %4
+ }
+@@ -204,11 +285,8 @@
+   return %4 : $Int                                // id: %5
+ }
+ 
+-// Swift.SinkOf.init <A>(Swift.SinkOf<A>.Type)((A) -> ()) -> Swift.SinkOf<A>
+-sil Swift.SinkOf.init <A>(Swift.SinkOf<A>.Type)((A) -> ()) -> Swift.SinkOf<A> : $@thin <τ_0_0> (@owned @callee_owned (@in τ_0_0) -> (), @thin SinkOf<τ_0_0>.Type) -> @owned SinkOf<τ_0_0>
+-
+-// main.Counter.update (main.Counter) -> (Swift.Int) -> ()
+-sil shared main.Counter.update (main.Counter) -> (Swift.Int) -> () : $@thin (@owned Counter) -> @owned @callee_owned (Int) -> () {
++// debug.Counter.update (debug.Counter) -> (Swift.Int) -> ()
++sil shared debug.Counter.update (debug.Counter) -> (Swift.Int) -> () : $@thin (@owned Counter) -> @owned @callee_owned (Int) -> () {
+ bb0(%0 : $Counter):
+   %1 = class_method %0 : $Counter, #Counter.update!1 : Counter -> (Int) -> () , $@cc(method) @thin (Int, @owned Counter) -> () // user: %2
+   %2 = partial_apply %1(%0) : $@cc(method) @thin (Int, @owned Counter) -> () // user: %3
+@@ -223,9 +301,6 @@
+   return %3 : $()                                 // id: %4
+ }
+ 
+-// Swift.SinkOf.put <A>(Swift.SinkOf<A>)(A) -> ()
+-sil Swift.SinkOf.put <A>(Swift.SinkOf<A>)(A) -> () : $@cc(method) @thin <τ_0_0> (@in τ_0_0, @owned SinkOf<τ_0_0>) -> ()
+-
+ // globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_func4
+ sil private_external [fragile] @globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_func4 : $@thin () -> ()
+ 
+@@ -233,12 +308,17 @@
+ sil private_external [fragile] @globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_func5 : $@thin () -> ()
+ 
+ sil_vtable Counter {
+-  #Counter.update!1: _TFC4main7Counter6updatefS0_FSiT_	// main.Counter.update (main.Counter)(Swift.Int) -> ()
+-  #Counter.deinit!deallocator: _TFC4main7CounterD	// main.Counter.__deallocating_deinit
+-  #Counter.number!getter.1: _TFC4main7Counterg6numberSi	// main.Counter.number.getter : Swift.Int
+-  #Counter.number!setter.1: _TFC4main7Counters6numberSi	// main.Counter.number.setter : Swift.Int
+-  #Counter.number!materializeForSet.1: _TFC4main7Counterm6numberSi	// main.Counter.number.materializeForSet : Swift.Int
+-  #Counter.init!initializer.1: _TFC4main7CountercfMS0_FT_S0_	// main.Counter.init (main.Counter.Type)() -> main.Counter
++  #Counter.update!1: _TFC5debug7Counter6updatefS0_FSiT_	// debug.Counter.update (debug.Counter)(Swift.Int) -> ()
++  #Counter.deinit!deallocator: _TFC5debug7CounterD	// debug.Counter.__deallocating_deinit
++  #Counter.number!getter.1: _TFC5debug7Counterg6numberSi	// debug.Counter.number.getter : Swift.Int
++  #Counter.number!setter.1: _TFC5debug7Counters6numberSi	// debug.Counter.number.setter : Swift.Int
++  #Counter.number!materializeForSet.1: _TFC5debug7Counterm6numberSi	// debug.Counter.number.materializeForSet : Swift.Int
++  #Counter.init!initializer.1: _TFC5debug7CountercfMS0_FT_S0_	// debug.Counter.init (debug.Counter.Type)() -> debug.Counter
++}
++
++sil_witness_table <T> DebugSinkOf<T>: SinkType module debug {
++  associated_type Element: T
++  method #SinkType.put!1: protocol witness for Swift.SinkType.put <A : Swift.SinkType>(inout Swift.SinkType.Self)(Swift.SinkType.Self.Element) -> () in conformance <A>debug.DebugSinkOf<A> : Swift.SinkType in debug	// protocol witness for Swift.SinkType.put <A : Swift.SinkType>(inout Swift.SinkType.Self)(Swift.SinkType.Self.Element) -> () in conformance <A>debug.DebugSinkOf<A> : Swift.SinkType in debug
+ }
+ 
+ 
