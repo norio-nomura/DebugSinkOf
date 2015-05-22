@@ -1,0 +1,191 @@
+sil_stage canonical
+
+import Builtin
+import Swift
+import SwiftShims
+
+// main.c : Swift.SinkOf<Swift.Int>
+sil_global main.c : Swift.SinkOf<Swift.Int> : $SinkOf<Int>
+
+// globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_token4
+sil_global private_external [fragile] @globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_token4 : $Builtin.Word
+
+// static Swift.Process._argc : Swift.Int32
+sil_global [fragile] static Swift.Process._argc : Swift.Int32 : $Int32
+
+// globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_token5
+sil_global private_external [fragile] @globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_token5 : $Builtin.Word
+
+// static Swift.Process._unsafeArgv : Swift.UnsafeMutablePointer<Swift.UnsafeMutablePointer<Swift.Int8>>
+sil_global [fragile] static Swift.Process._unsafeArgv : Swift.UnsafeMutablePointer<Swift.UnsafeMutablePointer<Swift.Int8>> : $UnsafeMutablePointer<UnsafeMutablePointer<Int8>>
+
+// main
+sil @main : $@cc(cdecl) @thin (Int32, UnsafeMutablePointer<UnsafeMutablePointer<Int8>>) -> Int32 {
+bb0(%0 : $Int32, %1 : $UnsafeMutablePointer<UnsafeMutablePointer<Int8>>):
+  %2 = global_addr @globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_token4 : $*Builtin.Word // user: %3
+  %3 = address_to_pointer %2 : $*Builtin.Word to $Builtin.RawPointer // user: %6
+  // function_ref globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_func4
+  %4 = function_ref @globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_func4 : $@thin () -> () // user: %5
+  %5 = thin_to_thick_function %4 : $@thin () -> () to $@callee_owned () -> () // user: %6
+  %6 = builtin "once"(%3 : $Builtin.RawPointer, %5 : $@callee_owned () -> ()) : $()
+  %7 = global_addr static Swift.Process._argc : Swift.Int32 : $*Int32 // user: %8
+  store %0 to %7 : $*Int32                        // id: %8
+  %9 = global_addr @globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_token5 : $*Builtin.Word // user: %10
+  %10 = address_to_pointer %9 : $*Builtin.Word to $Builtin.RawPointer // user: %13
+  // function_ref globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_func5
+  %11 = function_ref @globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_func5 : $@thin () -> () // user: %12
+  %12 = thin_to_thick_function %11 : $@thin () -> () to $@callee_owned () -> () // user: %13
+  %13 = builtin "once"(%10 : $Builtin.RawPointer, %12 : $@callee_owned () -> ()) : $()
+  %14 = global_addr static Swift.Process._unsafeArgv : Swift.UnsafeMutablePointer<Swift.UnsafeMutablePointer<Swift.Int8>> : $*UnsafeMutablePointer<UnsafeMutablePointer<Int8>> // user: %15
+  store %1 to %14 : $*UnsafeMutablePointer<UnsafeMutablePointer<Int8>> // id: %15
+  %16 = global_addr main.c : Swift.SinkOf<Swift.Int> : $*SinkOf<Int> // user: %27
+  %17 = alloc_ref $Counter                        // users: %20, %22, %23
+  %18 = integer_literal $Builtin.Int64, 0         // user: %19
+  %19 = struct $Int (%18 : $Builtin.Int64)        // user: %21
+  %20 = ref_element_addr %17 : $Counter, #Counter.number // user: %21
+  store %19 to %20 : $*Int                        // id: %21
+  %22 = class_method %17 : $Counter, #Counter.update!1 : Counter -> (Int) -> () , $@cc(method) @thin (Int, @owned Counter) -> () // user: %23
+  %23 = partial_apply %22(%17) : $@cc(method) @thin (Int, @owned Counter) -> () // users: %25, %30, %31
+  // function_ref reabstraction thunk helper from @callee_owned (@unowned Swift.Int) -> (@unowned ()) to @callee_owned (@in Swift.Int) -> (@unowned ())
+  %24 = function_ref reabstraction thunk helper from @callee_owned (@unowned Swift.Int) -> (@unowned ()) to @callee_owned (@in Swift.Int) -> (@unowned ()) : $@thin (@in Int, @owned @callee_owned (Int) -> ()) -> () // user: %25
+  %25 = partial_apply %24(%23) : $@thin (@in Int, @owned @callee_owned (Int) -> ()) -> () // user: %26
+  %26 = struct $SinkOf<Int> (%25 : $@callee_owned (@in Int) -> ()) // user: %27
+  store %26 to %16 : $*SinkOf<Int>                // id: %27
+  %28 = integer_literal $Builtin.Int64, 128       // user: %29
+  %29 = struct $Int (%28 : $Builtin.Int64)        // user: %31
+  strong_retain %23 : $@callee_owned (Int) -> ()  // id: %30
+  %31 = apply %23(%29) : $@callee_owned (Int) -> ()
+  %32 = integer_literal $Builtin.Int32, 0         // user: %33
+  %33 = struct $Int32 (%32 : $Builtin.Int32)      // user: %34
+  return %33 : $Int32                             // id: %34
+}
+
+// main.Counter.update (main.Counter)(Swift.Int) -> ()
+sil hidden main.Counter.update (main.Counter)(Swift.Int) -> () : $@cc(method) @thin (Int, @owned Counter) -> () {
+bb0(%0 : $Int, %1 : $Counter):
+  checked_cast_br [exact] %1 : $Counter to $Counter, bb2, bb3 // id: %2
+
+bb1:                                              // Preds: bb2 bb3
+  %3 = tuple ()                                   // user: %4
+  return %3 : $()                                 // id: %4
+
+bb2(%5 : $Counter):                               // Preds: bb0
+  %6 = ref_element_addr %5 : $Counter, #Counter.number // user: %7
+  store %0 to %6 : $*Int                          // id: %7
+  strong_release %5 : $Counter                    // id: %8
+  br bb1                                          // id: %9
+
+bb3:                                              // Preds: bb0
+  %10 = class_method %1 : $Counter, #Counter.number!setter.1 : Counter -> (Int) -> () , $@cc(method) @thin (Int, @owned Counter) -> () // user: %11
+  %11 = apply %10(%0, %1) : $@cc(method) @thin (Int, @owned Counter) -> ()
+  br bb1                                          // id: %12
+}
+
+// main.Counter.__deallocating_deinit
+sil hidden main.Counter.__deallocating_deinit : $@cc(method) @thin (@owned Counter) -> () {
+bb0(%0 : $Counter):
+  dealloc_ref %0 : $Counter                       // id: %1
+  %2 = tuple ()                                   // user: %3
+  return %2 : $()                                 // id: %3
+}
+
+// main.Counter.deinit
+sil hidden main.Counter.deinit : $@cc(method) @thin (@owned Counter) -> @owned Builtin.NativeObject {
+bb0(%0 : $Counter):
+  %1 = unchecked_ref_cast %0 : $Counter to $Builtin.NativeObject // user: %2
+  return %1 : $Builtin.NativeObject               // id: %2
+}
+
+// main.Counter.number.getter : Swift.Int
+sil hidden [transparent] main.Counter.number.getter : Swift.Int : $@cc(method) @thin (@owned Counter) -> Int {
+bb0(%0 : $Counter):
+  %1 = ref_element_addr %0 : $Counter, #Counter.number // user: %2
+  %2 = load %1 : $*Int                            // user: %4
+  strong_release %0 : $Counter                    // id: %3
+  return %2 : $Int                                // id: %4
+}
+
+// main.Counter.number.setter : Swift.Int
+sil hidden [transparent] main.Counter.number.setter : Swift.Int : $@cc(method) @thin (Int, @owned Counter) -> () {
+bb0(%0 : $Int, %1 : $Counter):
+  %2 = ref_element_addr %1 : $Counter, #Counter.number // user: %3
+  store %0 to %2 : $*Int                          // id: %3
+  strong_release %1 : $Counter                    // id: %4
+  %5 = tuple ()                                   // user: %6
+  return %5 : $()                                 // id: %6
+}
+
+// main.Counter.number.materializeForSet : Swift.Int
+sil hidden [transparent] main.Counter.number.materializeForSet : Swift.Int : $@cc(method) @thin (Builtin.RawPointer, @inout Builtin.UnsafeValueBuffer, @owned Counter) -> (Builtin.RawPointer, Optional<@thin (Builtin.RawPointer, inout Builtin.UnsafeValueBuffer, inout Counter, @thick Counter.Type) -> ()>) {
+bb0(%0 : $Builtin.RawPointer, %1 : $*Builtin.UnsafeValueBuffer, %2 : $Counter):
+  %3 = ref_element_addr %2 : $Counter, #Counter.number // user: %4
+  %4 = address_to_pointer %3 : $*Int to $Builtin.RawPointer // user: %6
+  %5 = enum $Optional<@thin (Builtin.RawPointer, inout Builtin.UnsafeValueBuffer, inout Counter, @thick Counter.Type) -> ()>, #Optional.None!enumelt // user: %6
+  %6 = tuple (%4 : $Builtin.RawPointer, %5 : $Optional<@thin (Builtin.RawPointer, inout Builtin.UnsafeValueBuffer, inout Counter, @thick Counter.Type) -> ()>) // user: %8
+  strong_release %2 : $Counter                    // id: %7
+  return %6 : $(Builtin.RawPointer, Optional<@thin (Builtin.RawPointer, inout Builtin.UnsafeValueBuffer, inout Counter, @thick Counter.Type) -> ()>) // id: %8
+}
+
+// main.Counter.init (main.Counter.Type)() -> main.Counter
+sil hidden main.Counter.init (main.Counter.Type)() -> main.Counter : $@cc(method) @thin (@owned Counter) -> @owned Counter {
+bb0(%0 : $Counter):
+  %1 = integer_literal $Builtin.Int64, 0          // user: %2
+  %2 = struct $Int (%1 : $Builtin.Int64)          // user: %4
+  %3 = ref_element_addr %0 : $Counter, #Counter.number // user: %4
+  store %2 to %3 : $*Int                          // id: %4
+  return %0 : $Counter                            // id: %5
+}
+
+// main.Counter.__allocating_init (main.Counter.Type)() -> main.Counter
+sil hidden main.Counter.__allocating_init (main.Counter.Type)() -> main.Counter : $@thin (@thick Counter.Type) -> @owned Counter {
+bb0(%0 : $@thick Counter.Type):
+  %1 = alloc_ref $Counter                         // users: %4, %6
+  %2 = integer_literal $Builtin.Int64, 0          // user: %3
+  %3 = struct $Int (%2 : $Builtin.Int64)          // user: %5
+  %4 = ref_element_addr %1 : $Counter, #Counter.number // user: %5
+  store %3 to %4 : $*Int                          // id: %5
+  return %1 : $Counter                            // id: %6
+}
+
+// reabstraction thunk helper from @callee_owned (@unowned Swift.Int) -> (@unowned ()) to @callee_owned (@in Swift.Int) -> (@unowned ())
+sil shared [transparent] reabstraction thunk helper from @callee_owned (@unowned Swift.Int) -> (@unowned ()) to @callee_owned (@in Swift.Int) -> (@unowned ()) : $@thin (@in Int, @owned @callee_owned (Int) -> ()) -> () {
+bb0(%0 : $*Int, %1 : $@callee_owned (Int) -> ()):
+  %2 = load %0 : $*Int                            // user: %3
+  %3 = apply %1(%2) : $@callee_owned (Int) -> ()  // user: %4
+  return %3 : $()                                 // id: %4
+}
+
+// globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_func4
+sil private_external [fragile] @globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_func4 : $@thin () -> () {
+bb0:
+  %0 = global_addr static Swift.Process._argc : Swift.Int32 : $*Int32 // user: %3
+  %1 = integer_literal $Builtin.Int32, 0          // user: %2
+  %2 = struct $Int32 (%1 : $Builtin.Int32)        // user: %3
+  store %2 to %0 : $*Int32                        // id: %3
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+}
+
+// globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_func5
+sil private_external [fragile] @globalinit_33_1BDF70FFC18749BAB495A73B459ED2F0_func5 : $@thin () -> () {
+bb0:
+  %0 = global_addr static Swift.Process._unsafeArgv : Swift.UnsafeMutablePointer<Swift.UnsafeMutablePointer<Swift.Int8>> : $*UnsafeMutablePointer<UnsafeMutablePointer<Int8>> // user: %4
+  %1 = integer_literal $Builtin.Int8, 0           // user: %2
+  %2 = builtin "inttoptr_Int8"(%1 : $Builtin.Int8) : $Builtin.RawPointer // user: %3
+  %3 = struct $UnsafeMutablePointer<UnsafeMutablePointer<Int8>> (%2 : $Builtin.RawPointer) // user: %4
+  store %3 to %0 : $*UnsafeMutablePointer<UnsafeMutablePointer<Int8>> // id: %4
+  %5 = tuple ()                                   // user: %6
+  return %5 : $()                                 // id: %6
+}
+
+sil_vtable Counter {
+  #Counter.update!1: _TFC4main7Counter6updatefS0_FSiT_	// main.Counter.update (main.Counter)(Swift.Int) -> ()
+  #Counter.deinit!deallocator: _TFC4main7CounterD	// main.Counter.__deallocating_deinit
+  #Counter.number!getter.1: _TFC4main7Counterg6numberSi	// main.Counter.number.getter : Swift.Int
+  #Counter.number!setter.1: _TFC4main7Counters6numberSi	// main.Counter.number.setter : Swift.Int
+  #Counter.number!materializeForSet.1: _TFC4main7Counterm6numberSi	// main.Counter.number.materializeForSet : Swift.Int
+  #Counter.init!initializer.1: _TFC4main7CountercfMS0_FT_S0_	// main.Counter.init (main.Counter.Type)() -> main.Counter
+}
+
+
+
