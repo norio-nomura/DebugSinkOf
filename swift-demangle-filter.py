@@ -36,7 +36,7 @@ else:
 
 # run filter
 demangledSymbols = {}
-reSymbol = re.compile('([_@]_[_a-zA-Z0-9]+)')
+reSymbol = re.compile('([_@]?_[_a-zA-Z0-9]+)')
 
 for line in assembly:
   symbols = set(reSymbol.findall(line))
